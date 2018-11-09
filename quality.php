@@ -6,8 +6,8 @@
 
 <body>
 <?php
-if(isset($_GET['ppm'])){
-  $ppm = $_GET['ppm'];
+if(isset($_POST['ppm'])){
+  $ppm = $_POST['ppm'];
   echo "PPM :". $ppm;
 } else {
   echo "failed";
