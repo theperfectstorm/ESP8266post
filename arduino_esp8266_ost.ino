@@ -1,5 +1,5 @@
 #include "SoftwareSerial.h"
-String ssid ="theperfectstorm";
+String ssid ="theperfectstorm"; //your SSID
 
 String password="9661458227";
 
@@ -7,11 +7,11 @@ SoftwareSerial esp(2, 3);// RX, TX
 
 String data;
 
-String server = "www.theperfectstorm.co.in"; // www.example.com
 
-String uri = "/quality.php";// our example is /esppost.php
+String server = "www.theperfectstorm.co.in"; //
+String uri = "/quality.php";// our example is
 
-int ppm = analogRead(A0);//sensor pin
+int ppm;//sensor pin
 
 
 
@@ -52,7 +52,7 @@ delay(1000);
 
 esp.println(cmd);
 
-delay(4000);
+delay(200);
 
 if(esp.find("OK")) {
 
@@ -69,7 +69,9 @@ Serial.println("Cannot connect to wifi"); }
 }
 
 void loop () {
-
+int ppm = analogRead(A0);
+if(ppm>100)digitalWrite(8,HIGH);
+else digitalWrite(8,LOW);
 
 // convert the bit data to string form
 
@@ -77,10 +79,10 @@ void loop () {
 
 data = "ppm=" + String(ppm);// data sent must be under this form //name1=value1&name2=value2.
 Serial.println(data);
-delay(1000);
+delay(200);
 httppost();
 
-delay(1000);
+delay(200);
 
 }
 
@@ -96,7 +98,7 @@ Serial.println("TCP connection ready");
 
 String postRequest =
 
-"GET " + uri + " HTTP/1.0\r\n" +
+"POST " + uri + " HTTP/1.0\r\n" +
 
 "Host: " + server + "\r\n" +
 
