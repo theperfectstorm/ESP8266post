@@ -15,5 +15,14 @@ if(isset($_POST['ppm'])){
 echo $_GET['ppm'];
 ?>
 
+
+<?php
+$myfile = fopen("1.txt", "w") or die("Unable to open file!");
+$txt = $ppm;
+fwrite($myfile, $txt);
+fclose($myfile);
+?>
+
+
 </body>
 </html>
